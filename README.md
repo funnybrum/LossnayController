@@ -30,4 +30,4 @@ Two sensors will be attached. One configured at 0x77 and one configured at 0x76.
 
 ## A0 as input to monitor for the bypass valve state.
 
-And we are out of digital pins, but we have an analog one! It will be used to monitor the bypass and malfunction monitor outputs at TM3.
+And we are almost out of digital pins (D8 is still available), but we have an analog one! It will be used to monitor the bypass and malfunction monitor outputs at TM3.
