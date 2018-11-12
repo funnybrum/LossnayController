@@ -10,6 +10,7 @@ void setup()
 
     webServer.begin();
     systemCheck.begin();
+    lossnay.begin();
 }
 
 void loop() {
@@ -17,5 +18,6 @@ void loop() {
     settings.loop();
     systemCheck.loop();
     logger.loop();
+    lossnay.loop();
     delay(100);
 }

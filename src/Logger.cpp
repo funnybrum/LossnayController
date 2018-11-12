@@ -2,12 +2,21 @@
 
 void Logger::begin() {
     buffer[0] = 0;
+#ifdef LOG_TO_SERIAL
+    Serial.begin(115200);
+    while (! Serial) {
+        delay(1);
+    }
+#endif
 }
 
 void Logger::loop() {
 }
 
 void Logger::log(char* msg) {
+#ifdef LOG_TO_SERIAL
+    Serial.println(msg);
+#endif
     // new_size = pos + strlen(msg) + 1 '\n' + 1 '\0'
     // this will overflow the buffer by new_size - sizeof(buffer)
     int overflowBy = pos + strlen(msg) + 2 - sizeof(buffer);

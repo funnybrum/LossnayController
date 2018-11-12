@@ -6,14 +6,14 @@
 
 #define LOG_SIZE 256
 
-// Buttons
-#define BUTTON_PIN   D3  //GPIO0
-#define RELAY_PIN    D6  //GPIO12
-#define RED_LED_PIN  D6  //GPIO12
-#define BLUE_LED_PIN D7  //GPIO13
-#define CSE7789_PIN  TX  //U0RXD
+// GPIO PINS
+#define ON_OFF_PIN  D0
+#define FAN_SPEED_1 D1
+#define FAN_SPEED_2 D2
+#define FAN_SPEED_3 D6
+#define FAN_SPEED_4 D7
 
-#define CSE77XX_BAUD
+#define LOG_TO_SERIAL
 
 #define MIN_TO_MILLIS(mins) (mins * 60L * 1000L)
 
@@ -29,5 +29,6 @@
 #include "WebServer.h"
 #include "WiFi.h"
 #include "Logger.h"
+#include "Lossnay.h"
 
 #endif

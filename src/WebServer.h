@@ -19,6 +19,9 @@ class WebServer {
         void handle_reset();
         void handle_hard_reset();
         void handle_logs();
+        void handle_on();
+        void handle_off();
+        void handle_fan();
 };
 
 extern WebServer webServer;

@@ -9,6 +9,9 @@ WebServer::WebServer(int port) {
     _server->on("/reset", std::bind(&WebServer::handle_reset, this));
     _server->on("/hard-reset", std::bind(&WebServer::handle_hard_reset, this));
     _server->on("/logs", std::bind(&WebServer::handle_logs, this));
+    _server->on("/on", std::bind(&WebServer::handle_on, this));
+    _server->on("/off", std::bind(&WebServer::handle_off, this));
+    _server->on("/fan", std::bind(&WebServer::handle_fan, this));
 
     _httpUpdater = new ESP8266HTTPUpdateServer(true);
     _httpUpdater->setup(_server);
@@ -98,6 +101,37 @@ void WebServer::handle_hard_reset() {
 void WebServer::handle_logs() {
     systemCheck.registerWebCall();
     _server->send(200, "text/html", logger.getLogs());
+}
+
+void WebServer::handle_fan() {
+    logger.log("/fan");
+    systemCheck.registerWebCall();
+
+    if (_server->hasArg("speed")) {
+        int val = _server->arg("speed").toInt();
+        if (0 <= val && val <= 4) {
+            logger.log("Setting fan speed to %d", val);
+            lossnay.fan_speed(val);
+            _server->send(200);
+            return;
+        }
+    }
+
+    _server->send(404, "text/plain", "Pass in speed query argument with value between 0 and 4.");
+}
+
+void WebServer::handle_on() {
+    logger.log("/on");
+    systemCheck.registerWebCall();
+    lossnay.turn_on();
+    _server->send(200);
+}
+
+void WebServer::handle_off() {
+    logger.log("/off");
+    systemCheck.registerWebCall();
+    lossnay.turn_off();
+    _server->send(200);
 }
 
 WebServer webServer = WebServer(HTTP_PORT);
