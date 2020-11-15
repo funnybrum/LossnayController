@@ -31,3 +31,7 @@ Two sensors will be attached. One configured at 0x77 and one configured at 0x76.
 ## A0 as input to monitor for the bypass valve state.
 
 And we are almost out of digital pins (D8 is still available), but we have an analog one! It will be used to monitor the bypass and malfunction monitor outputs at TM3.
+
+Refferences:
+Lossnay manual with internal pinout - https://library.mitsubishielectric.co.uk/pdf/download_full/2400
+PCB - https://easyeda.com/funnybrum/lossnay-controller
